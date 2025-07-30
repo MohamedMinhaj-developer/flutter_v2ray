@@ -36,18 +36,12 @@ public class V2rayController {
             }
         };
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.TIRAMISU) {
-            if (ActivityCompat.checkSelfPermission(context, Manifest.permission.POST_NOTIFICATIONS)
-                    != PackageManager.PERMISSION_GRANTED) {
-                        context.registerReceiver(receiver, new IntentFilter("V2RAY_CONNECTION_INFO"));
-
-            }
-            else{
-                context.registerReceiver(receiver, new IntentFilter("V2RAY_CONNECTION_INFO"), Context.RECEIVER_EXPORTED);
-            }
-
-        } else {
-            context.registerReceiver(receiver, new IntentFilter("V2RAY_CONNECTION_INFO"));
-        }
+    // Use RECEIVER_NOT_EXPORTED for internal broadcasts
+    context.registerReceiver(receiver, new IntentFilter("V2RAY_CONNECTION_INFO"), Context.RECEIVER_NOT_EXPORTED);
+} else {
+    // Legacy method for older Android versions
+    context.registerReceiver(receiver, new IntentFilter("V2RAY_CONNECTION_INFO"));
+}
     }
 
     public static void changeConnectionMode(final AppConfigs.V2RAY_CONNECTION_MODES connection_mode) {
