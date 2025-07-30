@@ -26,7 +26,7 @@ android {
         namespace 'com.github.blueboytm.flutter_v2ray'
     }
 
-    compileSdkVersion 34
+    compileSdkVersion 35
     compileOptions {
         sourceCompatibility JavaVersion.VERSION_1_8
         targetCompatibility JavaVersion.VERSION_1_8
